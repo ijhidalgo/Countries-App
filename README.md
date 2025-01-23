@@ -25,6 +25,15 @@ For a complete list of available schematics (such as `components`, `directives`,
 ```bash
 ng generate --help
 ```
+## Git Building
+
+npm i del-cli --save-dev
+npm i copyfiles --save-dev
+
+"delete:docs": "del docs",
+"build:href": "ng build --base-href ./",
+"copy:dist": "copyfiles dist/03-gifs-app/browser/* ./docs -f",
+"build:git": "npm run delete:docs && npm run build:href && npm run copy:dist"
 
 ## Building
 
