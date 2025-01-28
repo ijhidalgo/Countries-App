@@ -12,7 +12,7 @@ import { map, Observable } from 'rxjs';
 })
 export class ByCapitalPageComponent {
 
-  public countries!:Country[];
+  public countries:Country[] = [];
 
   public searchByCapital(term: string):void {
 
