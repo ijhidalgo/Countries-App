@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Country } from '../../interfaces/country';
+import { Component, OnInit } from '@angular/core';
+import { Country } from '../../interfaces/country.interface';
 import { CountriesService } from '../../services/countries.service';
 
 @Component({
@@ -9,9 +9,10 @@ import { CountriesService } from '../../services/countries.service';
   templateUrl: './by-country-page.component.html',
   styles: ``
 })
-export class ByCountryPageComponent {
+export class ByCountryPageComponent implements OnInit {
 
   public countries:Country[] = [];
+  public initialValue: string = '';
 
   searchByCountry (val: string):void {
     this.cServ.searchCountry(val)
@@ -19,6 +20,11 @@ export class ByCountryPageComponent {
       this.countries = countries
     }
     )
+  }
+
+  ngOnInit(): void {
+    this.countries = this.cServ.cacheStore.byCountry.countries;
+    this.initialValue = this.cServ.cacheStore.byCountry.term;
   }
 
   constructor(private cServ:CountriesService) {}
